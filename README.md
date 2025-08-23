@@ -5,3 +5,14 @@
 
 Description
 + Components
+
+  3 Switches (1 Layer-3 switch , 2 layer-1 switches)
+  Ethernet Cables
+  Console Cable
+  USB to Serial Converter
+
++ Softwares
+Putty
+Cisco Packet Tracer (link to download: https://www.netacad.com/cisco-packet-tracer)
+
+ 
