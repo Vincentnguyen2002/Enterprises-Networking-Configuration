@@ -1,0 +1,231 @@
+Layer 3 switch
+
+
+
+**change name**
+
+
+
+hostname L3SW
+
+
+
+
+
+**ethernet channel**
+
+
+
+int range f0/1-2
+
+shutdown
+
+channel-group 1 mode desirable
+
+no shutdown
+
+
+
+int port-channel1
+
+switchport trunk encapsulation dot1q
+
+switchport mode trunk
+
+
+
+
+
+int range f0/3-4
+
+shutdown
+
+channel-group 2 mode active
+
+no shutdown
+
+
+
+int port-channel2
+
+switchport trunk encapsulation dot1q
+
+switchport mode trunk
+
+
+
+
+
+
+
+**vlan**
+
+
+
+vlan 81
+
+name Staff
+
+exit
+
+
+
+
+
+vlan 82
+
+name Students
+
+exit
+
+
+
+vlan 85
+
+name MGT
+
+exit
+
+
+
+vlan 88
+
+name Guest
+
+exit
+
+
+
+
+
+int vlan 81
+
+ip add 10.95.81.1 255.255.255.0
+
+exit
+
+
+
+int vlan 82
+
+ip add 10.95.82.2 255.255.252.0
+
+exit
+
+
+
+int vlan 85
+
+ip add 10.95.85.5 255.255.255.0
+
+exit
+
+
+
+int vlan 88
+
+ip add 10.95.88.8 255.255.255.0
+
+exit
+
+
+
+**DHCP**
+
+
+
+ip dhcp excluded-address 10.95.81.1
+
+ip dhcp excluded-address 10.95.82.2
+
+ip dhcp excluded-address 10.95.85.5
+
+ip dhcp excluded-address 10.95.88.8
+
+
+
+
+
+ip dhcp pool VLAN-81
+
+network 10.95.81.0 255.255.255.0
+
+default gateway 10.95.81.1
+
+exit
+
+
+
+
+
+ip dhcp pool VLAN-82
+
+network 10.95.80.0 255.255.252.0
+
+default gateway 10.95.82.2
+
+exit
+
+
+
+
+
+ip dhcp pool VLAN-85
+
+network 10.95.85.0 255.255.255.0
+
+default gateway 10.95.85.5
+
+exit
+
+
+
+
+
+ip dhcp pool VLAN-88
+
+network 10.95.88.0 255.255.255.0
+
+default gateway 10.95.88.8
+
+exit
+
+
+
+
+
+**OSPF**
+
+
+
+router ospf 10 
+
+network 10.95.79.0 0.0.0.3 area 0
+
+network 10.95.81.0 0.0.0.255 area 0
+
+network 10.95.82.0 0.0.0.255 area 0
+
+network 10.95.85.0 0.0.0.255 area 0
+
+network 10.95.88.0 0.0.0.255 area 0
+
+
+**SSH VERSION 2***
+ip domain-name L3SW.com
+crypto key generate rsa 2048
+ip ssh version 2
+line vty 0 15
+transport input ssh
+login local
+exit
+username cisco privilege 1 password class
+username admin privilege 15 password ciscoeigrp
+
+
+
+
+
+
+
+

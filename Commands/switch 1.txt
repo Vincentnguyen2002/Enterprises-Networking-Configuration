@@ -1,0 +1,149 @@
+switch 1 :
+
+
+
+**đổi tên**
+
+hostname Switch 1
+
+
+
+**tạo vlan**
+
+
+
+vlan 81
+
+name Staff
+
+exit
+
+vlan 82
+
+name Students
+
+exit
+
+vlan 85
+
+name MGT
+
+exit
+
+vlan 88
+
+name Guest
+
+exit
+
+
+
+**đưa port vô vlan**
+
+cấu trúc : port 5-8 : vlan 81
+
+           port 9-12: vlan 82
+
+ 	   port 13-16 : vlan 85
+
+  	   port 17-20 : vlan 88
+
+int range f0/5-8
+
+switchport mode access
+
+switchport access vlan 81
+
+
+
+int range f0/9-12
+
+switchport mode access
+
+switchport access vlan 82
+
+
+
+int range f0/13-16
+
+switchport mode access
+
+switchport access vlan 85
+
+
+
+int range f0/17-20
+
+switchport mode access
+
+switchport access vlan 88
+
+
+
+**làm ethernet channel**
+
+
+
+int range f0/1-2
+
+shutdown
+
+channel-group 1 mode desirable
+
+no shutdown
+
+exit
+
+int port-channel 1
+
+switchport mode trunk
+
+
+
+
+
+port security 
+int range f0/5-8
+switchport port-security maximum 2
+switchport port-security violation shutdown
+exit
+
+int range f0/9-12
+switchport port-security maximum 2
+switchport port-security violation shutdown
+exit
+
+int range f0/13-16
+switchport port-security maximum 2
+switchport port-security violation shutdown
+exit
+
+int range f0/17-20
+switchport port-security maximum 2
+switchport port-security violation shutdown
+exit
+
+
+portfast,bpduguard
+int range f0/5-20
+spanning-tree portfast
+spanning-tree bpduguard enable
+
+
+**SSH VERSION 2***
+ip domain-name L3SW.com
+crypto key generate rsa 2048
+ip ssh version 2
+line vty 0 15
+transport input ssh
+login local
+exit
+username cisco privilege 1 password class
+username admin privilege 15 password ciscoeigrp
+
+
+
+
+
+
+
