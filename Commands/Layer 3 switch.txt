@@ -150,7 +150,7 @@ ip dhcp pool VLAN-81
 
 network 10.95.81.0 255.255.255.0
 
-default gateway 10.95.81.1
+default-router 10.95.81.1
 
 exit
 
@@ -162,7 +162,7 @@ ip dhcp pool VLAN-82
 
 network 10.95.80.0 255.255.252.0
 
-default gateway 10.95.82.2
+default-router 10.95.82.2
 
 exit
 
@@ -174,7 +174,7 @@ ip dhcp pool VLAN-85
 
 network 10.95.85.0 255.255.255.0
 
-default gateway 10.95.85.5
+default-router 10.95.85.5
 
 exit
 
@@ -186,7 +186,7 @@ ip dhcp pool VLAN-88
 
 network 10.95.88.0 255.255.255.0
 
-default gateway 10.95.88.8
+default-router 10.95.88.8
 
 exit
 
@@ -196,6 +196,9 @@ exit
 
 **OSPF**
 
+int f0/24
+no switchport
+ip address 10.95.79.1 255.255.252.0
 
 
 router ospf 10 
