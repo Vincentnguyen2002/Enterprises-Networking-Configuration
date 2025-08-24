@@ -2,13 +2,13 @@ switch 1 :
 
 
 
-**đổi tên**
+**change name**
 
 hostname Switch 1
 
 
 
-**tạo vlan**
+**vlan**
 
 
 
@@ -38,7 +38,7 @@ exit
 
 
 
-**đưa port vô vlan**
+**vlan into ports**
 
 cấu trúc : port 5-8 : vlan 81
 
@@ -80,7 +80,7 @@ switchport access vlan 88
 
 
 
-**làm ethernet channel**
+**ethernet channel**
 
 
 
