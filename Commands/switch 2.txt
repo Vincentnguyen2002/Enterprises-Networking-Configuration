@@ -1,9 +1,9 @@
 switch 2 :
 
-đổi tên 
+change name 
 hostname SW2 
 
-tạo vlan 
+vlan 
 
 vlan 81
 name Staff
@@ -18,8 +18,8 @@ vlan 88
 name Guest
 exit
 
-đưa port vô vlan
-cấu trúc : port 5-8 : vlan 81
+vlan into port
+structure : port 5-8 : vlan 81
            port 9-12: vlan 82
  	   port 13-16 : vlan 85
   	   port 17-20 : vlan 88
@@ -39,7 +39,7 @@ int range f0/17-20
 switchport mode access
 switchport access vlan 88
 
-làm ethernet channel 
+ethernet channel 
 
 int range f0/3-4
 shutdown
